@@ -1,0 +1,54 @@
+<div class="container">
+	<div class="half-width" id="char-info">
+		<h1>Name: {{createdChar.charName}}</h1>
+		<p>Race: {{createdChar.raceName}}</p>
+		<p>Class: {{createdChar.charClass}}</p>
+	</div>
+</div>
+
+
+<div class="basic-info container">
+	<div class="half-width">
+		<input ng-model="characterName" />
+		<button ng-click="setName(characterName)">Set Name</button>
+	</div>
+	<div class="half-width">
+		<select ng-model="characterRace">
+			<option ng-repeat="(name, value) in races" value="{{name}}">{{name}}</option>
+		</select>
+		<button ng-click="getSelectedRaceData(characterRace)">Select Race</button>
+	</div>
+</div>
+
+<div class="container">
+	<div class="half-width">
+		<div ng-repeat="(name, value) in createdChar.stats" class="stat-row">
+			<div class="stat-name" id={{name}}>
+				{{name}}
+			</div>
+			<button class="decrease box" ng-click="decreaseStat(name)" ng-disabled="disableButtonMin(name)">
+			  -
+			</button>
+			<div class="number box" id="{{name}}-value">
+				{{value}}
+			</div>
+			<button class="increase box" ng-click="increaseStat(name)" ng-disabled="disableButtonMax(name)">
+			  +
+		  </button>
+		</div>
+		<div class="stat-row bonus-row">
+			<div class="stat-name" id="bonus">
+				Bonus
+			</div>
+			<div class="number box bonus-box" id="bonus-value">
+				{{bonus}}
+			</div>
+		</div>
+	</div>
+	<div class="half-width">
+		<p class="class-name" ng-repeat="class in charClasses | charClassEligibility:createdChar.stats" ng-click="setClass(class)">
+			{{class}}
+		</p>
+	</div>
+	<button ng-click="saveChar()" ng-disabled="disableSave()">Save Character</button>
+</div>
