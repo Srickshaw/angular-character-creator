@@ -47,6 +47,6 @@ app.post('/character', function(req, res) {
 	})
 });
 
-app.listen(42069, function() {
-	console.log('Server running on port 42069');
+app.listen(8000, function() {
+	console.log('Server running on port 8000');
 });
